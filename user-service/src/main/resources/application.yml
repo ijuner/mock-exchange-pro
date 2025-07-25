@@ -6,12 +6,3 @@ spring:
   config:
     import: "configserver:"
 
-feign:
-  client:
-    config:
-      default:
-        loggerLevel: FULL
-        connectTimeout: 3000
-        readTimeout: 5000
-        requestInterceptors:
-          - com.mock.exchange.user_service.config.FeignAuthInterceptor
