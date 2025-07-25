@@ -1,5 +1,5 @@
 
-package com.mock.exchange.security;
+package com.mock.exchange.user_service.security;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;

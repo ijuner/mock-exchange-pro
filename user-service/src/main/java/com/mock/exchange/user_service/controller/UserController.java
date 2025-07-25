@@ -1,5 +1,5 @@
-package com.mock.exchange.controller;
-import com.mock.exchange.repository.UserRepository;
+package com.mock.exchange.user_service.controller;
+import com.mock.exchange.user_service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

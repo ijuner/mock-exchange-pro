@@ -1,4 +1,4 @@
-package com.mock.exchange.security;
+package com.mock.exchange.user_service.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

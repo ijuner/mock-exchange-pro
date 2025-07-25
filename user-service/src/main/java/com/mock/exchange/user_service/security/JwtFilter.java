@@ -1,4 +1,4 @@
-package com.mock.exchange.security;
+package com.mock.exchange.user_service.security;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
