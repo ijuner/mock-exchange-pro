@@ -1,5 +1,5 @@
 
-package com.mock.exchange.user_service.entity;
+package com.mock.exchange.entity;
 import jakarta.persistence.*;
 import lombok.*;
 @Entity
