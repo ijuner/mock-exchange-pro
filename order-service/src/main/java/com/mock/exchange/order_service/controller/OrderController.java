@@ -28,6 +28,12 @@ public class OrderController {
         System.out.println("User verified: " + result);
 
         Order saved = orderRepository.save(order);
+
+        // Publish order event to Kafka
+        // Assuming KafkaProducerService is autowired in this controller
+        String payload = objectMapper.writeValueAsString(saved);
+        kafkaProducerService.publishOrderEvent(saved.toString());
+
         return ResponseEntity.ok(saved);
     }
 }

@@ -1,5 +1,6 @@
-package com.mock.exchange.user_service.security;
-import com.mock.exchange.user_service.security.JwtFilter;
+package com.mock.exchange.order_service.security;
+import com.mock.exchange.order_service.security.JwtFilter;
+import com.mock.exchange.order_service.security.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +25,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                                .requestMatchers(HttpMethod.POST, "/api/user/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/order/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
