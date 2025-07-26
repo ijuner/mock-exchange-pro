@@ -13,9 +13,12 @@ public class Order {
     private Long id;
 
     private String username;
+    private String side; // BUY or SELL
+    private String type; // e.g. LIMIT, MARKET
     private String symbol;
     private int quantity;
     private double price;
+    private long timestamp; // Unix timestamp in milliseconds
 
     private String status; // e.g. PENDING, FILLED, CANCELLED
 }

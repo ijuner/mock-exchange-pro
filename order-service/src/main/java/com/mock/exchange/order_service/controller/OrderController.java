@@ -1,5 +1,6 @@
 package com.mock.exchange.order_service.controller;
 import com.mock.exchange.order_service.client.UserClient;
+import com.mock.exchange.order_service.dto.OrderEventDTO;
 import com.mock.exchange.order_service.entity.Order;
 import com.mock.exchange.order_service.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,8 +32,18 @@ public class OrderController {
 
         // Publish order event to Kafka
         // Assuming KafkaProducerService is autowired in this controller
-        String payload = objectMapper.writeValueAsString(saved);
-        kafkaProducerService.publishOrderEvent(saved.toString());
+        //ensure kafka message consistent, create OrderEventDTO
+        OrderEventDTO event = OrderEventDTO.builder()
+                .id(saved.getId())
+                .symbol(saved.getSymbol())
+                .side(saved.getSide())
+                .price(saved.getPrice())
+                .quantity(saved.getQuantity())
+                .timestamp(saved.getTimestamp())
+                .build();
+
+        String payload = objectMapper.writeValueAsString(event);
+        kafkaProducerService.publishOrderEvent(payload);
 
         return ResponseEntity.ok(saved);
     }
