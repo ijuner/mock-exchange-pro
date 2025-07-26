@@ -2,6 +2,7 @@
 package com.mock.exchange.order_service.entity;
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDateTime;
 @Entity
 @Data
 @NoArgsConstructor
@@ -18,7 +19,7 @@ public class Order {
     private String symbol;
     private int quantity;
     private double price;
-    private long timestamp; // Unix timestamp in milliseconds
+    private LocalDateTime timestamp; // Unix timestamp in milliseconds
 
     private String status; // e.g. PENDING, FILLED, CANCELLED
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class KafkaProducerService {
-    private final Kafkatemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
     private final String topic = "order-events";
     public void publishOrderEvent(String orderJson) {
         kafkaTemplate.send(topic, orderJson);

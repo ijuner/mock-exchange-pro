@@ -21,10 +21,10 @@ import java.util.concurrent.*;
 public class MatchingEngine {
     // 🧵 Thread pool for concurrent order matching
     private final ExecutorService executor  = Executors.newFixedThreadPool(4);
-    // ⏳ Blocking queue holds incoming orders from Kafka consumer
+    // Blocking queue holds incoming orders from Kafka consumer
     private final BlockingQueue<OrderDTO> orderQueue = new LinkedBlockingQueue<>();
 
-    // 📊 In-memory orderbook: pending BUY and SELL orders, grouped by symbol
+    //  In-memory orderbook: pending BUY and SELL orders, grouped by symbol
     private final Map<String, List<OrderDTO>> orderBook = new ConcurrentHashMap<>();
 /**
      * Starts 4 worker threads to pull from queue and match orders
@@ -68,7 +68,7 @@ public class MatchingEngine {
         boolean matched = false;
 
         for (OrderDTO existing : book) {
-            // Match BUY ↔ SELL and price match
+            // Match BUY SELL and price match
             if (!existing.getSide().equalsIgnoreCase(newOrder.getSide())
                     && existing.getPrice() == newOrder.getPrice()) {
 
@@ -84,7 +84,7 @@ public class MatchingEngine {
                 tradeProducer.sendTrade(trade);
 
                 // 🎯 Match found
-                log.info("✅ MATCHED: {} <--> {}", newOrder, existing);
+                log.info(" MATCHED: {} <--> {}", newOrder, existing);
                 book.remove(existing);
                 matched = true;
                 break;

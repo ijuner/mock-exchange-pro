@@ -1,7 +1,7 @@
 
 package com.mock.exchange.audit_service.consumer;
 import com.mock.exchange.audit_service.model.AuditLog;
-import com.mock.exchange.auditservice.repository.AuditLogRepository;
+import com.mock.exchange.audit_service.repository.AuditLogRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;

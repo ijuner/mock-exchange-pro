@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class OrderConsumer {
+    private final MatchingEngine matchingEngine = new MatchingEngine();
 /**
+ * 
      * This method is automatically called when a new message is published to "order-events".
      * The JSON message is automatically converted into OrderDTO.
      *
@@ -20,8 +22,9 @@ public class OrderConsumer {
     @KafkaListener(topics = "order-events", groupId = "match-engine-group")
     public void consumeOrderEvent(OrderDTO orderDTO) {
         log.info("Received order event: {}", orderDTO);
+        
         // TODO: Implement matching engine logic here
          // TODO: pass this to MatchingEngine queue
-        MatchingEngine.enqueue(orderDTO);
+        matchingEngine.enqueue(orderDTO);
     }
 }

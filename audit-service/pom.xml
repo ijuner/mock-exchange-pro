@@ -3,10 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.mock.exchange</groupId>
+		<artifactId>mock-exchange-pro</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.mock.exchange</groupId>
 	<artifactId>audit-service</artifactId>
@@ -30,7 +29,7 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-		<dependencies>
+		
   <!-- Kafka -->
   <dependency>
     <groupId>org.springframework.kafka</groupId>
@@ -58,7 +57,7 @@
   </dependency>
 </dependencies>
 
-	</dependencies>
+
 
 	<build>
 		<plugins>

@@ -19,6 +19,8 @@
     <module>order-service</module>
     <module>match-engine-service</module>
     <module>trade-service</module>
+    <module>audit-service</module>
+    <module>portfolio-service</module>
   </modules>
 
   <properties>

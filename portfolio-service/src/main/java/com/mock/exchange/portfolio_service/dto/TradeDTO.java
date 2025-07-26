@@ -1,5 +1,5 @@
 
-package com.mock.exchange.trade_service.model;
+package com.mock.exchange.portfolio_service.dto;
 import lombok.AllArgsConstructor;
 import lombok.*;
 

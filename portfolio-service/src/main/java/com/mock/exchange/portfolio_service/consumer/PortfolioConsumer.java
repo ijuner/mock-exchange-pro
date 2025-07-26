@@ -1,6 +1,6 @@
 package com.mock.exchange.portfolio_service.consumer;
 import com.mock.exchange.portfolio_service.entity.PortfolioEntity;
-import com.mock.exchange.portfolio_service.model.TradeDTO;
+import com.mock.exchange.portfolio_service.dto.TradeDTO;
 import com.mock.exchange.portfolio_service.repository.PortfolioRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

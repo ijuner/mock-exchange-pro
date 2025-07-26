@@ -1,6 +1,6 @@
 package com.mock.exchange.audit_service.repository;
-import com.mock.exchange.auditservice.model.AuditLog;
+import com.mock.exchange.audit_service.model.AuditLog;
 import org.springframework.data.mongodb.repository.MongoRepository;
-public class AuditLogRepository interface AuditLogRepository extends MongoRepository<AuditLog, String> {
+public interface AuditLogRepository extends MongoRepository<AuditLog, String> {
 
 }
