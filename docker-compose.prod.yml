@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+
+  config-server:
+    build: ./config-server
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  service-registry:
+    build: ./service-registry
+    ports:
+      - "8761:8761"
+    depends_on:
+      - config-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - config-server
+      - service-registry
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  order-service:
+    build: ./order-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - config-server
+      - service-registry
+      - auth-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  match-engine-service:
+    build: ./match-engine-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - config-server
+      - service-registry
+      - order-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  trade-service:
+    build: ./trade-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - config-server
+      - service-registry
+      - match-engine-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
