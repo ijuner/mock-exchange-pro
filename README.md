@@ -64,3 +64,6 @@ gcloud run deploy auth-service \
   --allow-unauthenticated \
   --port=8080
 
+
+Frontend:
+React   TypeScript   TailwindCSS  
