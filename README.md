@@ -39,7 +39,28 @@ mock-exchange-pro/
 ├── quote-service/          # 🔜 WebSocket price broadcasting
 ├── audit-service/          # 🔜 MongoDB + Kafka consumer for audit logging
 ├── common-lib/             # 🔜 Shared DTOs, exception handlers, utils
-├── frontend/               # 🔜 React-based UI (Vite, Zustand, Charts)
+├── frontend/               # 🔜 React-based UI (Vite, Zustand, Charts)  React + Axios
 ├── docker/                 # 🔜 Docker Compose for local envs (Postgres, Kafka, Redis)
 ├── helm/                   # 🔜 Helm charts for GCP Kubernetes deployment
 └── .github/workflows/      # 🔜 GitHub Actions for CI/CD
+
+
+GCP  +  Cloud Run、Artifact Registry、Cloud Build Deployment Docs
+#  jar
+mvn clean package -DskipTests
+
+# （auth-service ）
+docker build -t us-central1-docker.pkg.dev/mock-exchange-pro/mock-exchange-docker/auth-service:latest .
+
+#  GCP 
+gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-central1-docker.pkg.dev
+ 
+docker push us-central1-docker.pkg.dev/mock-exchange-pro/mock-exchange-docker/auth-service:latest
+Cloud Run ：
+gcloud run deploy auth-service \
+  --image=us-central1-docker.pkg.dev/mock-exchange-pro/mock-exchange-docker/auth-service:latest \
+  --platform=managed \
+  --region=us-central1 \
+  --allow-unauthenticated \
+  --port=8080
+
