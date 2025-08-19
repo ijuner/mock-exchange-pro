@@ -63,6 +63,83 @@
             <target>${java.version}</target>
           </configuration>
         </plugin>
+
+
+ <!-- Jacoco：所有子模块注入 agent、生成报告、做覆盖率校验 -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.11</version>
+          <executions>
+            <!-- 在 test 阶段前注入 agent -->
+            <execution>
+              <id>prepare-agent</id>
+              <goals><goal>prepare-agent</goal></goals>
+            </execution>
+
+            <!-- 子模块各自生成 unit+IT 的报告 -->
+            <execution>
+              <id>report</id>
+              <phase>test</phase>
+              <goals><goal>report</goal></goals>
+            </execution>
+
+            <!-- 覆盖率阈值校验（不达标失败构建） -->
+            <execution>
+              <id>check</id>
+              <phase>verify</phase>
+              <goals><goal>check</goal></goals>
+              <configuration>
+                <!-- 可按需排除 DTO/配置/启动类等 -->
+                <excludes>
+                  <exclude>**/dto/**</exclude>
+                  <exclude>**/config/**</exclude>
+                  <exclude>**/Application.class</exclude>
+                </excludes>
+                <rules>
+                  <rule>
+                    <element>CLASS</element>
+                    <limits>
+                      <!-- 线覆盖率：类级别 >= 0.75 -->
+                      <limit>
+                        <counter>LINE</counter>
+                        <value>COVEREDRATIO</value>
+                        <minimum>0.75</minimum>
+                      </limit>
+                      <!-- 分支覆盖率：类级别 >= 0.60（可调） -->
+                      <limit>
+                        <counter>BRANCH</counter>
+                        <value>COVEREDRATIO</value>
+                        <minimum>0.60</minimum>
+                      </limit>
+                    </limits>
+                  </rule>
+                </rules>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <!-- 顶层生成聚合报告（跨模块汇总到一个 jacoco.xml + HTML） -->
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.11</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>report-aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+
       </plugins>
     </pluginManagement>
   </build>

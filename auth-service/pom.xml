@@ -97,7 +97,23 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
+       <exclusions>
+      <!-- 确保使用 junit-jupiter，而不是 vintage -->
+      <exclusion>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+      </exclusion>
+    </exclusions>
     </dependency>
+
+
+ <!-- 明确加入 mockito-junit-jupiter（推荐） -->
+  <dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-junit-jupiter</artifactId>
+    <version>5.11.0</version>
+    <scope>test</scope>
+  </dependency>
 
     <dependency>
   <groupId>org.springframework.boot</groupId>
@@ -133,6 +149,25 @@
         </execution>
       </executions>
     </plugin>
+
+ <!-- 可选：Jacoco 覆盖率，从 Day 5 开始用 -->
+    <plugin>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>0.8.11</version>
+      <executions>
+        <execution>
+          <goals><goal>prepare-agent</goal></goals>
+        </execution>
+        <execution>
+          <id>report</id>
+          <phase>test</phase>
+          <goals><goal>report</goal></goals>
+        </execution>
+      </executions>
+    </plugin>
+
+
 		</plugins>
 	</build>
 

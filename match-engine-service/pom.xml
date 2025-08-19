@@ -54,7 +54,28 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
-    </dependency>
+   <exclusions>
+      <exclusion>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+      </exclusion>
+    </exclusions>
+  </dependency>
+
+  <!-- 测试：Spring Kafka test utils（有 EmbeddedKafka + 方便的 Matchers） -->
+  <dependency>
+    <groupId>org.springframework.kafka</groupId>
+    <artifactId>spring-kafka-test</artifactId>
+    <scope>test</scope>
+  </dependency>
+
+  <!-- 并发等待工具（更优雅地等待异步条件成立） -->
+  <dependency>
+    <groupId>org.awaitility</groupId>
+    <artifactId>awaitility</artifactId>
+    <version>4.2.1</version>
+    <scope>test</scope>
+  </dependency>
 	</dependencies>
 
 	<build>
