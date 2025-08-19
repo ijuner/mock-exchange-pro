@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.yaml.snakeyaml.events.Event;
 
 @RestController
 @RequiredArgsConstructor
@@ -49,8 +50,8 @@ public class OrderController {
                 .timestamp(saved.getTimestamp())
                 .build();
 
-        String payload = objectMapper.writeValueAsString(event);
-        kafkaProducerService.publishOrderEvent(payload);
+        // String payload = objectMapper.writeValueAsString(event);
+        kafkaProducerService.publishOrderEvent(event);
 
         return ResponseEntity.ok(saved);
     }

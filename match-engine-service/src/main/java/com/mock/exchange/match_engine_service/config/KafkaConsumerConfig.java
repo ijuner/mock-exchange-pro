@@ -6,8 +6,9 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.*;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
+import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
-
+// match-engine-service: Kafka consumer with manual ack and concurrency
 import java.util.*;
 @Configuration
 public class KafkaConsumerConfig {
@@ -31,6 +32,10 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<String, OrderDTO> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
+       // Concurrency = number of threads; effective parallelism also bounded by partitions
+        factory.setConcurrency(4); // tune to <= number of partitions
+        // Manual Ack so we can control commit after successful processing
+        factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
         return factory;
     }
 }

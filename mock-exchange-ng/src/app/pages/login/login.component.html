@@ -1,0 +1,14 @@
+<!-- src/app/pages/login/login.component.html -->
+<div class="container">
+  <h2>Login</h2>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <label>Email</label>
+  <input [(ngModel)]="email" [appHighlightInvalid]="!email" />
+
+  <label>Password</label>
+  <input type="password" [(ngModel)]="password" [appHighlightInvalid]="!password" />
+
+  <button (click)="submit()">Sign In</button>
+</div>
